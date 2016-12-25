@@ -11,15 +11,15 @@ time3 = "18:30"
 def job():
 	chance = random.randint(1,10)
 	if( chance > 2 ):
-		postTweet.postUpdate( 1, 0, True )
-	else:
+		postTweet.postUpdate( 1, 0 )
+		
 		print( "Die roll says no tweet" )
 
 def dayStart():
 
-	time1 = str( random.randint(9,11) ) + ":" + str( random.randint(0,6) ) + str( random.randint(0,9) )
-	time2 = str( random.randint(13,15) ) + ":" + str( random.randint(0,6) ) + str( random.randint(0,9) ) 
-	time3 = str( random.randint(17,19) ) + ":" + str( random.randint(0,6) ) + str( random.randint(0,9) )  
+	time1 = str( random.randint(9,11) ) + ":" + str( random.randint(0,5) ) + str( random.randint(0,9) )
+	time2 = str( random.randint(13,15) ) + ":" + str( random.randint(0,5) ) + str( random.randint(0,9) ) 
+	time3 = str( random.randint(17,19) ) + ":" + str( random.randint(0,5) ) + str( random.randint(0,9) )  
 	print( "times chosen; " )
 	print( time1 )
 	print( time2 )
