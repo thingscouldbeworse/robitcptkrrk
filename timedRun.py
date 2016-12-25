@@ -12,8 +12,8 @@ def job():
 	chance = random.randint(1,10)
 	if( chance > 2 ):
 		postTweet.postUpdate( 1, 0 )
-
-	print( "Die roll says no tweet" )
+	else:
+		print( "Die roll says no tweet" )
 
 def dayStart():
 

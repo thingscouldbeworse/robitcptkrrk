@@ -27,7 +27,7 @@ def postUpdate( numUpdates=1, timebetween=0, debug=False ):
 		
 		if( not debug ):
 			status = twitter_api.statuses.update( status=phrase )
-			print( status )
+			print( status['text'] )
 
 		if( (x+1) != numUpdates ):
 			time.sleep( timebetween )
