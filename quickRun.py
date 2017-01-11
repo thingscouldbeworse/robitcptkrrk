@@ -1,7 +1,7 @@
 import redditRetrieve
 import redditGenerate
 
-consolidated = redditRetrieve.getAll()
+#consolidated = redditRetrieve.getAll()
 
-redditRetrieve.writeJson( consolidated )
+#redditRetrieve.writeJson( consolidated )
 print( redditGenerate.generatePhrases() )

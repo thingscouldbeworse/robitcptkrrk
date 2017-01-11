@@ -5,6 +5,7 @@ import random
 import redditRetrieve
 
 reset = "2:00"
+reset2 = "1:00"
 time1 = "10:30"
 time2 = "14:30"
 time3 = "18:30"
@@ -32,6 +33,8 @@ def getMoreComments():
 
 	redditRetrieve.writeJson( consolidated )
 
+	
+schedule.every().day.at(reset2).do( getMoreComments )
 schedule.every().day.at(reset).do(dayStart)
 schedule.every().day.at(time1).do(job)
 schedule.every().day.at(time2).do(job)

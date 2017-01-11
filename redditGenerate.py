@@ -14,8 +14,10 @@ def generatePhrases( numPhrases=1):
 		
 		text = comment['body']
 
-		if( text[-1] != '.' and text[-1] != '!' and text[-1] != '?' ):
+		if( text[-1] != '.' and text[-1] != '!' and text[-1] != '?' and text[-2:] != '. ' and text[-2:] != '! ' and text[-2:] != '? ' ):
+
 			text_chunk = text_chunk + " " + text + '. '
+
 		else:
 			text_chunk = text_chunk + text
 				
