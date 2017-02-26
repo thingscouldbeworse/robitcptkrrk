@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append( os.getcwd() + '/redditComments/' )
+
 import redditRetrieve
 import redditGenerate
 

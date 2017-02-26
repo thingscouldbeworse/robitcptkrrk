@@ -1,7 +1,12 @@
-import postTweet
 import schedule
 import time
 import random
+import sys
+import os
+
+sys.path.append( os.getcwd() + '/redditComments/' )
+
+import postTweet
 import redditRetrieve
 
 reset = "2:00"
