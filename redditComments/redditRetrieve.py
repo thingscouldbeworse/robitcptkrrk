@@ -1,6 +1,7 @@
 import configparser
 import praw
 import json
+import os
 
 cfg = configparser.ConfigParser()
 cfg.read('config.ini')
@@ -62,12 +63,12 @@ def getHot():
 
 def writeJson( comments_json ):
 
-	with open( 'redditDB.json', 'w' ) as DB_file:
+	with open( os.getcwd() + '/redditComments/' + 'redditDB.json', 'w' ) as DB_file:
 		DB_file.write( json.dumps(comments_json) )
 
 def consolidate( comment_list ):
 
-	with open( 'redditDB.json' ) as json_data:
+	with open( os.getcwd() + '/redditComments/' + 'redditDB.json' ) as json_data:
 		all_comments = json.load(json_data)
 		json_data.close()
 
