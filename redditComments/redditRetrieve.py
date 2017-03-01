@@ -38,7 +38,7 @@ def getComments( comment_type ):
 		comments = reddit.redditor('thingscouldbeworse').comments.new(limit=None)
 
 	for comment in comments:
-		if( comment.body not None and comment.id not None):
+		if( comment.body is not None and comment.id is not None):
 			comment_json = { 'id' : comment.id, 'body' : comment.body }
 			comments_json.append( comment_json )
 
