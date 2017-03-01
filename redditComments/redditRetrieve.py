@@ -20,42 +20,20 @@ reddit.config.store_json_result = True
 
 print(reddit.read_only)
 
-
-def getNew():
-
-	comments_json = []
-
-	for comment in reddit.redditor('thingscouldbeworse').comments.new(limit=None):
-		comment_json = { 'id' : comment.id, 'body' : comment.body }
-		comments_json.append( comment_json )
-
-	return comments_json
-
-def getTop():
+def getComments( comment_type ):
 
 	comments_json = []
 
-	for comment in reddit.redditor('thingscouldbeworse').comments.top(limit=None):
-		comment_json = { 'id' : comment.id, 'body' : comment.body }
-		comments_json.append( comment_json )
+	if( comment_type == 'hot' ):
+		comments = reddit.redditor('thingscouldbeworse').comments.hot(limit=None)
+	elif( comment_type == 'controversial' ):
+		comments = reddit.redditor('thingscouldbeworse').comments.controversial(limit=None)
+	elif( comment_type == 'top' ):
+		comments = reddit.redditor('thingscouldbeworse').comments.top(limit=None)
+	elif( comment_type == 'new' ):
+		comments = reddit.redditor('thingscouldbeworse').comments.new(limit=None)
 
-	return comments_json
-
-def getControversial():
-
-	comments_json = []
-
-	for comment in reddit.redditor('thingscouldbeworse').comments.controversial(limit=None):
-		comment_json = { 'id' : comment.id, 'body' : comment.body }
-		comments_json.append( comment_json )
-
-	return comments_json
-
-def getHot():
-
-	comments_json = []
-
-	for comment in reddit.redditor('thingscouldbeworse').comments.top(limit=None):
+	for comment in comments:
 		comment_json = { 'id' : comment.id, 'body' : comment.body }
 		comments_json.append( comment_json )
 
@@ -64,7 +42,7 @@ def getHot():
 def writeJson( comments_json ):
 
 	with open( os.getcwd() + '/redditComments/' + 'redditDB.json', 'w' ) as DB_file:
-		DB_file.write( json.dumps(comments_json) )
+		DB_file.write( json.dumps(comments_json, indent=2) )
 
 def consolidate( comment_list ):
 
@@ -87,20 +65,20 @@ def consolidate( comment_list ):
 
 def getRecentNew():
 
-	new_new = getNew()
+	new_new = getComments( 'new' )
 
 	consolidated = consolidate( new_new )
 
 	return consolidated
 
 def getAll():
-
+	
 	retrieved_comments = []
 
-	new_hot = getHot()
-	new_top = getTop()
-	new_con = getControversial()
-	new_new = getNew()
+	new_hot = getComments( 'hot' )
+	new_top = getComments( 'top' )
+	new_con = getComments( 'controversial' )
+	new_new = getComments( 'new' )
 
 	retrieved_comments.append( new_hot )
 	retrieved_comments.append( new_top )
