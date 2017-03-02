@@ -2,6 +2,11 @@ import configparser
 import praw
 import json
 import os
+import sys
+
+sys.path.append( os.getcwd() + '../' )
+
+import utilities
 
 cfg = configparser.ConfigParser()
 cfg.read('config.ini')
@@ -71,8 +76,10 @@ def consolidate( comment_list ):
 def getRecentNew():
 
 	new_new = getComments( 'new' )
+	comments_list = []
+	comments_list.append( new_new )
 
-	consolidated = consolidate( new_new )
+	consolidated = consolidate( comments_list )
 
 	return consolidated
 

@@ -9245,5 +9245,9 @@
   {
     "id": "de8l617",
     "body": "https://mail.python.org/pipermail/core-workflow/2016-January/000345.html\n\nThey moved to git (as I understand it) because it was much easier to be doing things the way everyone else was, and then from there decided to host with Github because they didn't see an advantage of Gitlab and figured why not."
+  },
+  {
+    "id": "dedgy0p",
+    "body": "Literally the first reply to that comment is someone with a bad GCS experience"
   }
 ]

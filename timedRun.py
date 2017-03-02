@@ -8,6 +8,7 @@ sys.path.append( os.getcwd() + '/redditComments/' )
 
 import postTweet
 import redditRetrieve
+import utilities
 
 reset = "2:00"
 reset2 = "1:00"
