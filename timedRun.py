@@ -24,7 +24,7 @@ def job():
 	else:
 		print( "Die roll says no tweet" )
 
-	print( "Done."
+	print( "Done." )
 
 def dayStart():
 
