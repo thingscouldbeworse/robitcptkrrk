@@ -67,7 +67,8 @@ def consolidate( content_list, itemType ):
 def getMentions():
 
 	twitter_api = connection_init()
-
 	mentions = twitter_api.statuses.mentions_timeline()
+
+	return mentions
 
 
