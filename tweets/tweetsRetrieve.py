@@ -2,6 +2,7 @@ import markovify
 import configparser
 import twitter
 import os
+import json
 
 def connection_init():
 
@@ -40,7 +41,7 @@ def getAllTweets():
 
 	return all_tweets
 
-def storeTweets( json_content, itemType ):
+def storeItems( json_content, itemType ):
 
 	with open( os.getcwd() + '/tweets/' + itemType + 'DB.json', 'w' ) as DB_file:
 		DB_file.write( json.dumps(json_content, indent=2) )
@@ -77,5 +78,13 @@ def getMentions():
 			mentions_json.append( mention_json )
 
 	return mentions_json
+
+def refreshMentions():
+
+	mentions = getMentions()
+
+	mentions = consolidate( [mentions], 'mentions' )
+
+	storeItems( mentions, 'mentions' )
 
 
