@@ -17,11 +17,14 @@ time2 = "14:30"
 time3 = "18:30"
 
 def job():
+	print( "Executing" )
 	chance = random.randint(1,10)
 	if( chance > 2 ):
 		postTweet.postUpdate( 1, 0 )
 	else:
 		print( "Die roll says no tweet" )
+
+	print( "Done."
 
 def dayStart():
 

@@ -66,9 +66,16 @@ def consolidate( content_list, itemType ):
 
 def getMentions():
 
+	mentions_json = []
+
 	twitter_api = connection_init()
 	mentions = twitter_api.statuses.mentions_timeline()
 
-	return mentions
+	for mention in mentions:
+		if( mention['text'] is not None and mention['id'] is not None):
+			mention_json = { 'id' : mention['id'], 'text' : mention['text'], 'created_at' : mention['created_at'] }
+			mentions_json.append( mention_json )
+
+	return mentions_json
 
 
