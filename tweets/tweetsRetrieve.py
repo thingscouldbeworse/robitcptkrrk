@@ -74,7 +74,11 @@ def getMentions():
 
 	for mention in mentions:
 		if( mention['text'] is not None and mention['id'] is not None):
-			mention_json = { 'id' : mention['id'], 'text' : mention['text'], 'created_at' : mention['created_at'] }
+			mention_json = { 	'id' : mention['id'], 
+								'text' : mention['text'], 
+								'created_at' : mention['created_at'], 
+								'screen_name' : mention['screen_name']
+							}
 			mentions_json.append( mention_json )
 
 	return mentions_json

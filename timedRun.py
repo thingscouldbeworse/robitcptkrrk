@@ -7,6 +7,7 @@ import os
 sys.path.append( os.getcwd() + '/redditComments/' )
 
 import postTweet
+import tweetsRetrieve
 import redditRetrieve
 import utilities
 
@@ -36,15 +37,16 @@ def dayStart():
 	print( time2 )
 	print( time3 )
 
-def getMoreComments():
+def getMore():
 
 	consolidated = redditRetrieve.getRecentNew()
-
 	redditRetrieve.writeJson( consolidated )
 
+	consolidated = tweetsRetrieve.refreshMentions()
+
 	
-schedule.every().day.at(reset2).do( getMoreComments )
-schedule.every().day.at(reset).do(dayStart)
+schedule.every().day.at(reset2).do( getMore() )
+schedule.every().day.at(reset).do( dayStart() )
 schedule.every().day.at(time1).do(job)
 schedule.every().day.at(time2).do(job)
 schedule.every().day.at(time3).do(job)
