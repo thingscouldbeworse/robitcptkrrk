@@ -15,7 +15,8 @@ CLIENT_SECRET = cfg.get('reddit', 'client_secret')
 USER_AGENT = cfg.get('reddit', 'user_agent') 
 
 def praw_init():
-	
+
+	print( "Initializing PRAW connection" )
 	reddit = praw.Reddit(client_id=CLIENT_ID,
 	                     client_secret=CLIENT_SECRET,
 	                     user_agent=USER_AGENT

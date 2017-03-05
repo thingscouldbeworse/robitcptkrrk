@@ -5,6 +5,7 @@ import sys
 import os
 
 sys.path.append( os.getcwd() + '/redditComments/' )
+sys.path.append( os.getcwd() + '/tweets/' )
 
 import postTweet
 import tweetsRetrieve
@@ -39,19 +40,18 @@ def dayStart():
 
 def getMore():
 
+	print( "Retrieving new reddit comments and twitter mentions" )
 	consolidated = redditRetrieve.getRecentNew()
 	redditRetrieve.writeJson( consolidated )
 
-	consolidated = tweetsRetrieve.refreshMentions()
+	#tweetsRetrieve.refreshMentions()
 
 	
-schedule.every().day.at(reset2).do( getMore() )
-schedule.every().day.at(reset).do( dayStart() )
-schedule.every().day.at(time1).do(job)
-schedule.every().day.at(time2).do(job)
-schedule.every().day.at(time3).do(job)
-
-
+schedule.every().day.at(reset2).do( getMore )
+schedule.every().day.at(reset).do( dayStart )
+schedule.every().day.at(time1).do( job )
+schedule.every().day.at(time2).do( job )
+schedule.every().day.at(time3).do( job )
 
 
 while True:
