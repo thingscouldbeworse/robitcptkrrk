@@ -44,8 +44,11 @@ def getMore():
 	consolidated = redditRetrieve.getRecentNew()
 	redditRetrieve.writeJson( consolidated )
 
-	#tweetsRetrieve.refreshMentions()
+	tweetsRetrieve.refreshMentions()
 
+def checkMentions():
+
+	mentions = tweetsRetrieve.getMentions()
 	
 schedule.every().day.at(reset2).do( getMore )
 schedule.every().day.at(reset).do( dayStart )

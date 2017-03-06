@@ -48,9 +48,7 @@ def storeItems( json_content, itemType ):
 
 def consolidate( content_list, itemType ):
 
-	with open( os.getcwd() + '/tweets/' + itemType + 'DB.json' ) as json_data:
-		all_content = json.load(json_data)
-		json_data.close()
+	all_content = getDatabase( itemType )
 
 	print( str(len( all_content )) + " " + itemType + " in DB to start" )
 
@@ -62,6 +60,14 @@ def consolidate( content_list, itemType ):
 			
 
 	print( str(len( all_content )) + " " + itemType + " now in DB" )
+
+	return all_content
+
+def getDatabase( itemType ):
+
+	with open( os.getcwd() + '/tweets/' + itemType + 'DB.json' ) as json_data:
+		all_content = json.load(json_data)
+		json_data.close()
 
 	return all_content
 
