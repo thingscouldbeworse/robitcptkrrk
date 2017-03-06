@@ -83,7 +83,7 @@ def getMentions():
 			mention_json = { 	'id' : mention['id'], 
 								'text' : mention['text'], 
 								'created_at' : mention['created_at'], 
-								'screen_name' : mention['screen_name']
+								'screen_name' : mention['user']['screen_name']
 							}
 			mentions_json.append( mention_json )
 
@@ -97,4 +97,13 @@ def refreshMentions():
 
 	storeItems( mentions, 'mentions' )
 
+def refreshItems( itemType ):
 
+	if( itemType == 'tweets' ):
+		items = getAllTweets()
+	elif( itemType == 'mentions' ):
+		items = getMentions()
+
+	items = consolidate( [items], itemType )
+
+	storeItems( tweets, itemType )

@@ -44,17 +44,31 @@ def getMore():
 	consolidated = redditRetrieve.getRecentNew()
 	redditRetrieve.writeJson( consolidated )
 
-	tweetsRetrieve.refreshMentions()
+	tweetsRetrieve.refreshItems( 'mentions' )
+	tweetsRetrieve.refreshItems( 'tweets' )
 
 def checkMentions():
 
-	mentions = tweetsRetrieve.getMentions()
+	new_mentions = tweetsRetrieve.getMentions()
+
+	old_mentions = tweetsRetrieve.getDatabase( 'mentions' )
+
+	found = 0
+	for new_mention in new_mentions:
+		if new_mention not in old_mentions:
+			print( "new mention: " + new_mention['text'] )
+			found = found + 1
 	
+	print( str(found) + " new mentions" )
+
+
+
 schedule.every().day.at(reset2).do( getMore )
 schedule.every().day.at(reset).do( dayStart )
 schedule.every().day.at(time1).do( job )
 schedule.every().day.at(time2).do( job )
 schedule.every().day.at(time3).do( job )
+schedule.every(2).minutes.do( checkMentions )
 
 
 while True:
