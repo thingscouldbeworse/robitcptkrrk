@@ -59,7 +59,8 @@ def checkMentions():
 			print( "new mention: " + new_mention['text'] )
 			found = found + 1
 	
-	print( str(found) + " new mentions" )
+	if( found > 0 ):
+		print( str(found) + " new mentions" )
 
 
 
