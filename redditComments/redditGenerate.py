@@ -3,7 +3,7 @@ import configparser
 import json
 import os
 
-def generatePhrases( numPhrases=1):
+def generatePhrases( numPhrases=1, numCharacters=140 ):
 
 	with open( os.getcwd() + '/redditComments/' + 'redditDB.json' ) as json_data:
 		all_comments = json.load(json_data)
@@ -25,4 +25,4 @@ def generatePhrases( numPhrases=1):
 	#print( text_chunk )
 	text_model = markovify.Text( text_chunk, state_size=2 )
 	for i in range(numPhrases):
-		return( text_model.make_short_sentence(140, tries=100) )
+		return( text_model.make_short_sentence(numCharacters, tries=100) )

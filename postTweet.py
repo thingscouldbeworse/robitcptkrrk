@@ -4,21 +4,11 @@ import json
 import redditGenerate
 import time
 
+import tweetsRetrieve
+
 def postUpdate( numUpdates=1, timebetween=0, debug=False ):
 
-	cfg = configparser.ConfigParser()
-	cfg.read('config.ini')
-
-	ACCESS_TOKEN = cfg.get('twitter', 'ACCESS_TOKEN') 
-	ACCESS_SECRET = cfg.get('twitter', 'ACCESS_SECRET')
-	CONSUMER_KEY = cfg.get('twitter', 'CONSUMER_KEY') 
-	CONSUMER_SECRET = cfg.get('twitter', 'CONSUMER_SECRET')
-
-	oauth = twitter.oauth.OAuth(ACCESS_TOKEN, ACCESS_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
-	# Initiate the connection to Twitter REST API
-	twitter_api = twitter.Twitter(auth=oauth)
-
-
+	twitter_api = tweetsRetrieve.connection_init()
 
 	for x in range( 0, numUpdates ):
 		
@@ -31,5 +21,19 @@ def postUpdate( numUpdates=1, timebetween=0, debug=False ):
 
 		if( (x+1) != numUpdates ):
 			time.sleep( timebetween )
-		
+
+def postReply( screenName, replyID, debug=False ):
+
+	twitter_api = tweetsRetrieve.connection_init()
+
+	characters = "@" + screenName + " "
+	num_characters = 140 - len(characters)
+	phrase = redditGenerate.generatePhrases( numCharacters=num_characters )
+	phrase = characters + phrase
+
+	if( not debug ):
+		status = twitter_api.statuses.update( status=phrase, in_reply_to_status_id=replyID )
+	else:
+		print( phrase )
+
 

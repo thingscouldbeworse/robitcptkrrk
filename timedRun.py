@@ -57,11 +57,12 @@ def checkMentions():
 	for new_mention in new_mentions:
 		if new_mention not in old_mentions:
 			print( "new mention: " + new_mention['text'] )
+			postTweet.postReply( new_mention['screen_name'], new_mention['id'] )
 			found = found + 1
-	
-	if( found > 0 ):
-		print( str(found) + " new mentions" )
 
+
+	consolidated = tweetsRetrieve.consolidate( [new_mentions], 'mentions' )
+	tweetsRetrieve.storeItems( consolidated, 'mentions' )
 
 
 schedule.every().day.at(reset2).do( getMore )

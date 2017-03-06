@@ -106,4 +106,4 @@ def refreshItems( itemType ):
 
 	items = consolidate( [items], itemType )
 
-	storeItems( tweets, itemType )
+	storeItems( items, itemType )
