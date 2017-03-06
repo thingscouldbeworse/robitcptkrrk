@@ -35,5 +35,3 @@ def postReply( screenName, replyID, debug=False ):
 		status = twitter_api.statuses.update( status=phrase, in_reply_to_status_id=replyID )
 	else:
 		print( phrase )
-
-

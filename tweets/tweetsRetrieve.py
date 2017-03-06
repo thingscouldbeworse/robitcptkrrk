@@ -46,11 +46,11 @@ def storeItems( json_content, itemType ):
 	with open( os.getcwd() + '/tweets/' + itemType + 'DB.json', 'w' ) as DB_file:
 		DB_file.write( json.dumps(json_content, indent=2) )
 
-def consolidate( content_list, itemType ):
+def consolidate( content_list, itemType, verbose=True ):
 
 	all_content = getDatabase( itemType )
-
-	print( str(len( all_content )) + " " + itemType + " in DB to start" )
+	if( verbose ):
+		print( str(len( all_content )) + " " + itemType + " in DB to start" )
 
 	for content_json in content_list:
 		for item in content_json:
@@ -58,8 +58,8 @@ def consolidate( content_list, itemType ):
 			
 				all_content.append( item )
 			
-
-	print( str(len( all_content )) + " " + itemType + " now in DB" )
+	if( verbose ):
+		print( str(len( all_content )) + " " + itemType + " now in DB" )
 
 	return all_content
 
