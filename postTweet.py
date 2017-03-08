@@ -45,7 +45,7 @@ def goGetEm( tweetText, debug=False ):
 	ats = re.findall( '[\@]\w+', tweetText )
 	for at in ats:
 		if( at.lower() != "@RobitCptKrrk".lower() ):
-			
+
 			characters = at + " "
 			num_characters = 140 - len(characters)
 			phrase = redditGenerate.generatePhrases( numCharacters=num_characters )
@@ -70,7 +70,7 @@ def checkMentions():
 			if( new_mention['screen_name'] == 'CptKrrk' and "go get 'em" in new_mention['text'] ):
 				goGetEm( new_mention['text'] )
 			else:
-				postTweet.postReply( new_mention['screen_name'], new_mention['id'] )
+				postReply( new_mention['screen_name'], new_mention['id'] )
 			found = found + 1
 
 
