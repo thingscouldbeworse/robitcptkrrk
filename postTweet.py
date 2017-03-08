@@ -41,19 +41,20 @@ def goGetEm( tweetText, debug=False ):
 
 	twitter_api = tweetsRetrieve.connection_init()
 
-"""
+
 	ats = re.findall( '[\@]\w+', tweetText )
-	for at in ats:"""
+	for at in ats:
+		if( at.lower() != "@RobitCptKrrk".lower() ):
+			
+			characters = at + " "
+			num_characters = 140 - len(characters)
+			phrase = redditGenerate.generatePhrases( numCharacters=num_characters )
+			phrase = characters + phrase
 
-	characters = "@" + screenName + " "
-	num_characters = 140 - len(characters)
-	phrase = redditGenerate.generatePhrases( numCharacters=num_characters )
-	phrase = characters + phrase
-
-	if( not debug ):
-		status = twitter_api.statuses.update( status=phrase )
-	else:
-		print( phrase )
+			if( not debug ):
+				status = twitter_api.statuses.update( status=phrase )
+			else:
+				print( phrase )
 
 def checkMentions():
 
