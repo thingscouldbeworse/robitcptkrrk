@@ -26,4 +26,3 @@ def generatePhrases( numPhrases=1, numCharacters=140 ):
 	text_model = markovify.Text( text_chunk, state_size=2 )
 	for i in range(numPhrases):
 		return( text_model.make_short_sentence(numCharacters, tries=100) )
-		
