@@ -76,3 +76,4 @@ def checkMentions():
 
 	consolidated = tweetsRetrieve.consolidate( [new_mentions], 'mentions', verbose=False )
 	tweetsRetrieve.storeItems( consolidated, 'mentions' )
+

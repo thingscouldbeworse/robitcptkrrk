@@ -17,3 +17,4 @@ for tweet in all_tweets:
 			text_chunk = text_chunk + " " + text + '.'
 
 print( text_chunk )
+

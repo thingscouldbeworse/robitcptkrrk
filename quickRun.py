@@ -10,3 +10,4 @@ consolidated = redditRetrieve.getAll()
 
 redditRetrieve.writeJson( consolidated )
 print( redditGenerate.generatePhrases() )
+

@@ -107,3 +107,4 @@ def refreshItems( itemType ):
 	items = consolidate( [items], itemType )
 
 	storeItems( items, itemType )
+

@@ -100,3 +100,4 @@ def getAll():
 	consolidated = consolidate( retrieved_comments )
 
 	return consolidated
+
