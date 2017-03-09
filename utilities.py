@@ -11,3 +11,4 @@ def log_append( content ):
 		logfile.write( timestamp + "\n" )
 		logfile.write( json.dumps(content, indent=2) )
 		logfile.write( "\n" )
+
