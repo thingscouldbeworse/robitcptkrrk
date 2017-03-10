@@ -31,7 +31,20 @@ def getAllTweets():
 	results = len(statuses)
 	index = 0
 	while results >= 50:
-		statuses = twitter_api.statuses.user_timeline(screen_name='CptKrrk', count=50, include_retweets=True, max_id=statuses[49]['id'])
+		done = 0
+		while done <= 10: # we're going to stop after 10 tries (10 mintues)
+			try:
+				statuses = twitter_api.statuses.user_timeline(screen_name='CptKrrk', count=50, include_retweets=True, max_id=statuses[49]['id'])
+				done = 11
+			except:
+				if( done == 10 ):
+					print( "No connection after 10 tries.", sys.exc_info()[0] )
+					raise	
+				else:
+					done = done + 1
+					time.sleep( 60 ) # if the connection failed either we've hit a ratelimit
+							 # or there's a network failure
+		
 		all_tweets = all_tweets + statuses
 		results = len(statuses)
 		print( index )
