@@ -90,7 +90,21 @@ def getMentions():
 	mentions_json = []
 
 	twitter_api = connection_init()
-	mentions = twitter_api.statuses.mentions_timeline()
+
+	done = 0
+	while done <= 10: # we're going to stop after 10 tries (10 mintues)
+		try:
+			mentions = twitter_api.statuses.mentions_timeline()
+			done = 11
+		except:
+			if( done == 10 ):
+				print( "No connection after 10 tries.", sys.exc_info()[0] )
+				raise
+			else:
+				print( "Error connecting to Twitter API, trying again" )
+				done = done + 1
+				time.sleep( 60 ) # if the connection failed either we've hit a ratelimit
+						 # or there's a network failure
 
 	for mention in mentions:
 		if( mention['text'] is not None and mention['id'] is not None):
