@@ -39,8 +39,9 @@ def getAllTweets():
 			except:
 				if( done == 10 ):
 					print( "No connection after 10 tries.", sys.exc_info()[0] )
-					raise	
+					raise
 				else:
+					print( "Error connecting to Twitter API, trying again" )
 					done = done + 1
 					time.sleep( 60 ) # if the connection failed either we've hit a ratelimit
 							 # or there's a network failure
