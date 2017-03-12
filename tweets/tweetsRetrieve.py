@@ -137,3 +137,9 @@ def refreshItems( itemType ):
 
 	storeItems( items, itemType )
 
+def getRatelimitInfo( ):
+
+	twitter_api = connection_init()
+	limit = twitter_api.application.rate_limit_status()
+
+	return limit
