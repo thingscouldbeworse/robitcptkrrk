@@ -36,14 +36,15 @@ def getAllTweets():
 		while done <= 10: # we're going to stop after 10 tries (10 mintues)
 			try:
 				statuses = twitter_api.statuses.user_timeline(screen_name='CptKrrk', count=50, include_retweets=True, max_id=statuses[49]['id'])
+				print( "After " + str(done) + " retries, succesfully connected to Twitter API" )
 				done = 11
 			except:
 				if( done == 10 ):
 					print( "No connection after 10 tries.", sys.exc_info()[0] )
 					raise
 				else:
-					print( "Error connecting to Twitter API, trying again" )
 					done = done + 1
+					print( "Error connecting to Twitter API, going for try " + str(done) )
 					time.sleep( 60 ) # if the connection failed either we've hit a ratelimit
 							 # or there's a network failure
 		
@@ -96,14 +97,15 @@ def getMentions():
 	while done <= 10: # we're going to stop after 10 tries (10 mintues)
 		try:
 			mentions = twitter_api.statuses.mentions_timeline()
+			print( "After " + str(done) + " retries, succesfully connected to Twitter API" )
 			done = 11
 		except:
 			if( done == 10 ):
 				print( "No connection after 10 tries.", sys.exc_info()[0] )
 				raise
 			else:
-				print( "Error connecting to Twitter API, trying again" )
 				done = done + 1
+				print( "Error connecting to Twitter API, going for try " + str(done) )
 				time.sleep( 60 ) # if the connection failed either we've hit a ratelimit
 						 # or there's a network failure
 
