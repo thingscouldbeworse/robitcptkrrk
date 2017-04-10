@@ -97,7 +97,7 @@ def getMentions():
 	while done <= 10: # we're going to stop after 10 tries (10 mintues)
 		try:
 			mentions = twitter_api.statuses.mentions_timeline()
-			print( "After " + str(done) + " retries, succesfully connected to Twitter API" )
+			print( str(done) + " rtrv OK ", end='', flush=True )
 			done = 11
 		except:
 			if( done == 10 ):
@@ -139,7 +139,7 @@ def refreshItems( itemType ):
 
 	storeItems( items, itemType )
 
-def getRatelimitInfo( ):
+def getRatelimitInfo():
 
 	twitter_api = connection_init()
 	limit = twitter_api.application.rate_limit_status()
